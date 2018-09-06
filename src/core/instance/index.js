@@ -1,3 +1,8 @@
+
+/**
+ * Vue的构造函数
+ */
+
 import { initMixin } from './init'
 import { stateMixin } from './state'
 import { renderMixin } from './render'

@@ -1,5 +1,10 @@
 /* @flow */
 
+/**
+ * 重写Vue原型链的挂载方法
+ * 当Vue实例中不包含render函数时，挂载方法执行模板编译
+ */
+
 import config from 'core/config'
 import { warn, cached } from 'core/util/index'
 import { mark, measure } from 'core/util/perf'

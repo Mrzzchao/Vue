@@ -1,5 +1,11 @@
 /* @flow */
 
+/**
+ * 给Vue实例注入全局配置参数
+ * 注入全局公共组件、指令
+ * Devtool工具初始化
+ */
+
 import Vue from 'core/index'
 import config from 'core/config'
 import { extend, noop } from 'shared/util'
