@@ -24,6 +24,7 @@ const weexFactoryPlugin = {
   }
 }
 
+// 除dist目录外，返回src下相关目录地址
 const aliases = require('./alias')
 const resolve = p => {
   const base = p.split('/')[0]
@@ -205,6 +206,7 @@ function genConfig (name) {
   return config
 }
 
+// 区分是指定构建配置，还是返回全部构建配置
 if (process.env.TARGET) {
   module.exports = genConfig(process.env.TARGET)
 } else {

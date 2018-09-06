@@ -10,19 +10,20 @@ if (!fs.existsSync('dist')) {
 
 let builds = require('./config').getAllBuilds()
 
-// filter builds via command line arg
+// 找到命令行指定的构建配置
 if (process.argv[2]) {
   const filters = process.argv[2].split(',')
   builds = builds.filter(b => {
     return filters.some(f => b.output.file.indexOf(f) > -1 || b._name.indexOf(f) > -1)
   })
 } else {
-  // filter out weex builds by default
+  // 找到除weex的构建配置
   builds = builds.filter(b => {
     return b.output.file.indexOf('weex') === -1
   })
 }
 
+// Rollup 执行所有筛选出的构建配置
 build(builds)
 
 function build (builds) {
