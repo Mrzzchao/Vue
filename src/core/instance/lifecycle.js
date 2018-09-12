@@ -1,5 +1,7 @@
 /* @flow */
-
+/**
+ * 生命周期相关处理
+ */
 import config from '../config'
 import Watcher from '../observer/watcher'
 import { mark, measure } from '../util/perf'
@@ -131,13 +133,14 @@ export function lifecycleMixin (Vue: Class<Component>) {
   }
 }
 
+// 挂载钩子函数
 export function mountComponent (
   vm: Component,
   el: ?Element,
   hydrating?: boolean
 ): Component {
   vm.$el = el
-  if (!vm.$options.render) {
+  if (!vm.$options.render) {     // 没有render方法时
     vm.$options.render = createEmptyVNode
     if (process.env.NODE_ENV !== 'production') {
       /* istanbul ignore if */
@@ -198,8 +201,8 @@ export function mountComponent (
 
   // manually mounted instance, call mounted on self
   // mounted is called for render-created child components in its inserted hook
-  if (vm.$vnode == null) {
-    vm._isMounted = true
+  if (vm.$vnode == null) { // 如果实例为根节点
+    vm._isMounted = true   // vue实例是否挂载标志
     callHook(vm, 'mounted')
   }
   return vm

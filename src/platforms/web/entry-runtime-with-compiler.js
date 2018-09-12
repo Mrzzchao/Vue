@@ -2,7 +2,7 @@
 
 /**
  * 重写Vue原型链的挂载方法
- * 当Vue实例中不包含render函数时，挂载方法执行模板编译
+ * 当Vue实例中不包含render函数时，挂载方法执行模板编译，将模板编译成render方法
  */
 
 import config from 'core/config'
@@ -36,7 +36,7 @@ Vue.prototype.$mount = function (
 
   const options = this.$options
   // resolve template/el and convert to render function
-  if (!options.render) {
+  if (!options.render) {           // 不存在render方法时，执行模板编译操作
     let template = options.template
     if (template) {
       if (typeof template === 'string') {

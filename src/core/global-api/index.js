@@ -1,5 +1,8 @@
 /* @flow */
-
+/**
+ * 给Vue方法添加全局API
+ * use,mixin,extend,component,directive,filter
+ */
 import config from '../config'
 import { initUse } from './use'
 import { initMixin } from './mixin'
@@ -53,10 +56,15 @@ export function initGlobalAPI (Vue: GlobalAPI) {
   // components with in Weex's multi-instance scenarios.
   Vue.options._base = Vue
 
-  extend(Vue.options.components, builtInComponents)
+  // 添加keep-alive组件到Vue.options.components 
+  extend(Vue.options.components, builtInComponents) 
 
+  // 添加Vue.use
   initUse(Vue)
+  // 添加Vue.mixin
   initMixin(Vue)
+  // 添加Vue.extend
   initExtend(Vue)
+  // 添加Vue.component、Vue.directive、Vue.filter
   initAssetRegisters(Vue)
 }
