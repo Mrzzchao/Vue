@@ -1,4 +1,7 @@
 /* @flow */
+/**
+ * 将实例渲染成虚拟Node，vnode
+ */
 
 import {
   warn,
@@ -89,6 +92,7 @@ export function renderMixin (Vue: Class<Component>) {
       if (process.env.NODE_ENV !== 'production') {
         if (vm.$options.renderError) {
           try {
+            // vm.$createElement是initRender里的createElement
             vnode = vm.$options.renderError.call(vm._renderProxy, vm.$createElement, e)
           } catch (e) {
             handleError(e, vm, `renderError`)

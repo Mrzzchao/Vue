@@ -140,7 +140,7 @@ export function mountComponent (
   hydrating?: boolean
 ): Component {
   vm.$el = el
-  if (!vm.$options.render) {     // 没有render方法时
+  if (!vm.$options.render) {     // 没有render方法时，创建一个空vnode
     vm.$options.render = createEmptyVNode
     if (process.env.NODE_ENV !== 'production') {
       /* istanbul ignore if */
@@ -201,9 +201,9 @@ export function mountComponent (
 
   // manually mounted instance, call mounted on self
   // mounted is called for render-created child components in its inserted hook
-  if (vm.$vnode == null) { // 如果实例为根节点
-    vm._isMounted = true   // vue实例是否挂载标志
-    callHook(vm, 'mounted')
+  if (vm.$vnode == null) {       // 如果实例为根vue实例节点
+    vm._isMounted = true         // vue实例是否挂载标志
+    callHook(vm, 'mounted')      // 执行mounted钩子
   }
   return vm
 }
