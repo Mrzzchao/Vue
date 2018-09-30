@@ -39,7 +39,7 @@ export function initMixin (Vue: Class<Component>) {
     // internal component options needs special treatment.
       initInternalComponent(vm, options)
     } else {
-      vm.$options = mergeOptions(resolveConstructorOptions(vm.constructor), options || {}, vm)
+      vm.$options = mergeOptions(resolveConstructorOptions(vm.constructor), options || {}, vm)   // 合并系统生成的options和开发传入的options
     }
     /* istanbul ignore else */
     if (process.env.NODE_ENV !== 'production') {
@@ -99,7 +99,7 @@ export function initInternalComponent (vm: Component, options: InternalComponent
   }
 }
 
-export function resolveConstructorOptions (Ctor: Class<Component>) {
+export function resolveConstructorOptions (Ctor: Class<Component>) {  // Ctor是vue实例的构造函数
   let options = Ctor.options
   if (Ctor.super) {
     const superOptions = resolveConstructorOptions(Ctor.super)
