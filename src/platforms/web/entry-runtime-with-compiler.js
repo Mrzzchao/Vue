@@ -24,7 +24,7 @@ Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean
 ): Component {
-  el = el && query(el)
+  el = el && query(el)     // 获取el的dom
 
   /* istanbul ignore if */
   if (el === document.body || el === document.documentElement) {

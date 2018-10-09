@@ -69,7 +69,7 @@ function createKeyToOldIdx (children, beginIdx, endIdx) {
 
 export function createPatchFunction (backend) {
   let i, j
-  const cbs = {}
+  const cbs = {}         // 钩子执行方法表
 
   const { modules, nodeOps } = backend
 
@@ -82,6 +82,7 @@ export function createPatchFunction (backend) {
     }
   }
 
+  // dom转换成vnode
   function emptyNodeAt (elm) {
     return new VNode(nodeOps.tagName(elm).toLowerCase(), {}, [], undefined, elm)
   }
@@ -122,6 +123,7 @@ export function createPatchFunction (backend) {
 
   let creatingElmInVPre = 0
 
+  // vnode转换为dom，并插入父节点
   function createElm (
     vnode,
     insertedVnodeQueue,
@@ -303,7 +305,7 @@ export function createPatchFunction (backend) {
 
   function invokeCreateHooks (vnode, insertedVnodeQueue) {
     for (let i = 0; i < cbs.create.length; ++i) {
-      cbs.create[i](emptyNode, vnode)
+      cbs.create[i](emptyNode, vnode)                    // 执行所有create钩子，有指令、ref的
     }
     i = vnode.data.hook // Reuse variable
     if (isDef(i)) {

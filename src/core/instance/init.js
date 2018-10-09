@@ -45,7 +45,7 @@ export function initMixin (Vue: Class<Component>) {
     if (process.env.NODE_ENV !== 'production') {
       initProxy(vm)
     } else {
-      vm._renderProxy = vm
+      vm._renderProxy = vm    // 添加一个实例引用
     }
     // expose real self
     vm._self = vm
@@ -60,7 +60,7 @@ export function initMixin (Vue: Class<Component>) {
     // 初始化injections
     // provide 和 inject 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中
     initInjections(vm) // resolve injections before data/props
-    // 初始化props、methods、data、watch
+    // 初始化props、methods、data、computed、watch
     initState(vm)
     // 初始化provide
     initProvide(vm) // resolve provide after data/props
