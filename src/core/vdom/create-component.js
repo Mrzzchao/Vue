@@ -1,4 +1,7 @@
 /* @flow */
+/**
+ * 将组件转换成vnode
+ */
 
 import VNode from './vnode'
 import { resolveConstructorOptions } from 'core/instance/init'
@@ -109,7 +112,7 @@ export function createComponent (
     return
   }
 
-  const baseCtor = context.$options._base
+  const baseCtor = context.$options._base  // 在global-api.js里面注入的Vue引用
 
   // plain options object: turn it into a constructor
   if (isObject(Ctor)) {
